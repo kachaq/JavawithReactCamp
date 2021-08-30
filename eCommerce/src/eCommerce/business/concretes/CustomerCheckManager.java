@@ -14,7 +14,11 @@ public class CustomerCheckManager implements CustomerCheckService{
 	@Override
 	public boolean checkName(Customer customer) {
 		if(customer.getName().isEmpty()) {
-			System.out.println("Ad yeri bos býrakýlamaz ! ");
+			System.out.println("Ad yeri bos bÃ½rakÃ½lamaz ! ");
+			return false;
+		}
+		else if(customer.getName().length() < 2) {
+			System.out.println("Your name should atleast 2 charcter! ");
 			return false;
 		}
 		return true;
@@ -23,7 +27,11 @@ public class CustomerCheckManager implements CustomerCheckService{
 	@Override
 	public boolean checkSurname(Customer customer) {
 		if(customer.getSurname().isEmpty()) {
-			System.out.println("Soyad yeri bos býrakýlamaz ! ");
+			System.out.println("Soyad yeri bos bÃ½rakÃ½lamaz ! ");
+			return false;
+		}
+		else if(customer.getSurname().length() < 2) {
+			System.out.println("Your last name should atleast 2 charcter! ");
 			return false;
 		}
 		return true;
@@ -35,11 +43,11 @@ public class CustomerCheckManager implements CustomerCheckService{
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		
 		if(customer.getEmail().isEmpty()) {
-			System.out.println("Email alaný boþ býrakýlamaz ! ");
+			System.out.println("Email alanÃ½ boÃ¾ bÃ½rakÃ½lamaz ! ");
 			return false;
 		}
 		else if(pattern.matcher(customer.getEmail()).find() == false) {
-			System.out.println("Girdiginiz email adresi yanlýs formatta girilmis. Ornek : ornek@gmail.com");
+			System.out.println("Girdiginiz email adresi yanlÃ½s formatta girilmis. Ornek : ornek@gmail.com");
 			return false;
 		}
 		return true;
@@ -48,12 +56,12 @@ public class CustomerCheckManager implements CustomerCheckService{
 	@Override
 	public boolean checkPassword(Customer customer) {
 		if(customer.getPassword().isEmpty()) {
-			System.out.println("Sifre yeri bos býrakýlamaz ! ");
+			System.out.println("Sifre yeri bos bÃ½rakÃ½lamaz ! ");
 			
 			return false;
 	       }
 		else if(customer.getPassword().length() < 6) {
-			System.out.println("Sifre uzunlugu 6'dan kýsa olamaz ! ");
+			System.out.println("Sifre uzunlugu 6'dan kÃ½sa olamaz ! ");
 			return false;
 		}
 		return true;
@@ -64,7 +72,7 @@ public class CustomerCheckManager implements CustomerCheckService{
 	public boolean uniqueEmail(Customer customer) {
 		boolean result = true;
 		if(eMail.contains(customer.getEmail()) ) {
-			System.out.println("Bu email ile daha önceden kayýt yapýlmýs ");
+			System.out.println("Bu email ile daha Ã¶nceden kayÃ½t yapÃ½lmÃ½s ");
 			result = false;
 		}
 		else {
